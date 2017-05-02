@@ -25,7 +25,7 @@
       <td ng-bind="item.name"></td>
       <td>
         <button class="btn btn-default" ng-click="updataCount($index,true)">+</button>
-        <input type="text" ng-model="item.count">
+        <input type="text" ng-model="item.count" ng-blur="checkCount(item)">
         <button class="btn btn-default" ng-click="updataCount($index,false)">-</button>
       </td>
       <td ng-bind="item.price"></td>
