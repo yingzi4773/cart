@@ -52,6 +52,26 @@ angular.module('cartApp',[])
                 }
             }
 
+            //深度监视cart
+            $scope.$watch('cart',function (newCart,oldCart) {
+                if(newCart!==oldCart){
+                    for (var i=0;i<newCart.length;i++){
+                        var newCount = newCart[i].count;
+                        var oldCount = oldCart[i].count;
+                        //如果输入的是空字符串或者空格可以
+                        if(newCount =='') return;
+                        //如果不是数字或者数字小于1数字不更新
+                        if (isNaN( newCount*1) || newCount<=0){
+                            newCart[i].count = oldCount;
+                            return;
+                        }//isNaN函数用法：不是数值得情况下返回true；是数值返回false
+                    }
+                }
+            },true)
 
+            //失去焦点检测
+            $scope.checkCount = function (item) {
+                if(item.count ==='') item.count=1;
+            }
 
         });
